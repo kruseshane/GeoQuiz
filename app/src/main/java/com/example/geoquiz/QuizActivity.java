@@ -15,6 +15,7 @@ public class QuizActivity extends AppCompatActivity {
     private Button mTrueButton;
     private Button mFalseButton;
     private Button mNextButton;
+    private Button mPrevButton;
     private TextView questionTV;
     private int currentIndex = 0;
 
@@ -66,6 +67,21 @@ public class QuizActivity extends AppCompatActivity {
                 currentIndex = (currentIndex + 1) % qBank.length;
                 int question = qBank[currentIndex].getQuestion();
                 questionTV.setText(question);
+            }
+        });
+
+        mPrevButton = findViewById(R.id.prev_button);
+        mPrevButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("TAG", String.valueOf(currentIndex));
+                try {
+                    currentIndex = (currentIndex - 1) % qBank.length;
+                    int question = qBank[currentIndex].getQuestion();
+                    questionTV.setText(question);
+                } catch (ArrayIndexOutOfBoundsException ex) {
+                    Toast.makeText(QuizActivity.this, "Cannot go back", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
