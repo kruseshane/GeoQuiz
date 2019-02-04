@@ -1,10 +1,13 @@
 package com.example.geoquiz;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,8 +17,9 @@ public class QuizActivity extends AppCompatActivity {
 
     private Button mTrueButton;
     private Button mFalseButton;
-    private Button mNextButton;
-    private Button mPrevButton;
+    private Button mCheatButton;
+    private ImageButton mNextButton;
+    private ImageButton mPrevButton;
     private TextView questionTV;
     private int currentIndex = 0;
 
@@ -26,14 +30,18 @@ public class QuizActivity extends AppCompatActivity {
             new Question(R.string.question_3, true),
     };
 
+    private void updateQuestion() {
+        int question = qBank[currentIndex].getQuestion();
+        questionTV.setText(question);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
         questionTV = (TextView) findViewById(R.id.question_text);
-        int question = qBank[currentIndex].getQuestion();
-        questionTV.setText(question);
+        updateQuestion();
 
         mTrueButton = findViewById(R.id.true_button);
         mTrueButton.setOnClickListener(new View.OnClickListener() {
@@ -74,14 +82,25 @@ public class QuizActivity extends AppCompatActivity {
         mPrevButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("TAG", String.valueOf(currentIndex));
                 try {
                     currentIndex = (currentIndex - 1) % qBank.length;
+                    Log.d("TAG", String.valueOf(currentIndex));
                     int question = qBank[currentIndex].getQuestion();
                     questionTV.setText(question);
                 } catch (ArrayIndexOutOfBoundsException ex) {
                     Toast.makeText(QuizActivity.this, "Cannot go back", Toast.LENGTH_SHORT).show();
+                    currentIndex = currentIndex - 1;
+                    Log.d("TAG", String.valueOf(currentIndex));
                 }
+            }
+        });
+
+        mCheatButton = findViewById(R.id.cheat_button);
+        mCheatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(QuizActivity.this, CheatActivity.class);
+                startActivity(intent);
             }
         });
     }

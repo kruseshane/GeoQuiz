@@ -20,6 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:paddingBottom="25dp"
         tools:layout_editor_absoluteX="113dp"
         tools:layout_editor_absoluteY="406dp">
 
@@ -36,16 +37,42 @@
             android:text="@string/false_button" />
     </LinearLayout>
 
+    <!--
     <Button
         android:id="@+id/next_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/next_button"/>
+        -->
 
-    <Button
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/prev_button"
-        android:text="@string/prev_button"/>
+        android:orientation="horizontal"
+        android:paddingBottom="75dp">
+
+        <ImageButton
+            android:id="@+id/prev_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="19dp"
+            android:background="@android:color/transparent"
+            android:src="@mipmap/prev_arrow_round"/>
+
+        <ImageButton
+            android:id="@+id/next_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="19dp"
+            android:background="@android:color/transparent"
+            android:src="@mipmap/next_arrow_round"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/cheat_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cheat_button"/>
 
 </LinearLayout>
