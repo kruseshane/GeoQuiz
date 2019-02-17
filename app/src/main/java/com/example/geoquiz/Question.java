@@ -4,6 +4,7 @@ public class Question {
 
     private int question;
     private boolean answer;
+    private boolean cheat;
 
     public Question(int question, boolean answer) {
         this.question = question;
@@ -17,5 +18,4 @@ public class Question {
     public boolean isAnswer() {
         return answer;
     }
-
 }
