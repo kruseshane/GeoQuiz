@@ -6,6 +6,8 @@
     <string name="next_button">Next</string>
     <string name="prev_button">Back</string>
     <string name="start_game_button">Start Quiz</string>
+    <string name="show_stats_button">Show Score Now</string>
+    <string name="play_again_button">Play Again</string>
 
     <string name="correct_toast">Correct!</string>
     <string name="incorrect_toast">Incorrect</string>
@@ -29,7 +31,7 @@
     <string name="prev_arrow_desc">View previous question</string>
     <string name="next_arrow_desc">View next question</string>
     <string name="name_hint">Enter Name</string>
-    <string name="welcome_message">Welcome to GeoQuiz! Enter you name below</string>
+    <string name="welcome_message">Welcome to GeoQuiz! Enter your name below</string>
 
     <string name="gold_message">You earned a gold medal!</string>
     <string name="silver_message">You earned a silver medal!</string>

@@ -18,14 +18,14 @@
         android:textStyle="bold"
         android:paddingLeft="40dp"
         android:paddingRight="40dp"
-        android:paddingBottom="20dp"/>
+        android:paddingBottom="40dp"/>
 
     <ImageView
         android:id="@+id/medal_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
-        android:padding="24dp"/>
+        android:padding="32dp"/>
 
     <TextView
         android:id="@+id/medal_message"
@@ -35,13 +35,16 @@
         android:paddingBottom="75dp"
         android:textSize="20sp"/>
 
-    <TextView
-        android:id="@+id/end_game_stats"
+    <Button
+        android:id="@+id/play_again_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:textSize="25sp" />
-    
+        android:layout_marginTop="30dp"
+        android:width="150dp"
+        android:height="65dp"
+        android:text="@string/play_again_button"
+        android:textSize="18sp"/>
+
 
 
 </LinearLayout>

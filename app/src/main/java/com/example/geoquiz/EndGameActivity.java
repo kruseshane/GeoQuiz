@@ -3,6 +3,8 @@ package com.example.geoquiz;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,13 +18,11 @@ public class EndGameActivity extends AppCompatActivity {
     private String playerName;
     private int correct;
     private int incorrect;
-    private int notAnswered;
-    private int cheated;
     private int totalQuestionCount;
     private TextView endGameText;
-    private TextView endGameStats;
     private TextView medalMessage;
     private ImageView medal;
+    private Button mPlayAgainButton;
     private DecimalFormat df;
 
     @Override
@@ -56,13 +56,15 @@ public class EndGameActivity extends AppCompatActivity {
             medal.setImageResource(R.mipmap.no_medal);
         }
 
-        endGameStats = findViewById(R.id.end_game_stats);
-        endGameStats.setText("Correct = " + String.valueOf(correct) + "\nIncorrect = " +
-                String.valueOf(incorrect) + "\nNot Answered = " + String.valueOf(notAnswered) +
-                "\nCheated = " + String.valueOf(cheated));
-
-
-
+        mPlayAgainButton = findViewById(R.id.play_again_button);
+        mPlayAgainButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(EndGameActivity.this, QuizActivity.class);
+                intent.putExtra("name", playerName);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -71,8 +73,6 @@ public class EndGameActivity extends AppCompatActivity {
         playerName = intent.getStringExtra("name");
         correct = intent.getIntExtra("correct", 0);
         incorrect = intent.getIntExtra("incorrect", 0);
-        notAnswered = intent.getIntExtra("notAnswered", 0);
-        cheated = intent.getIntExtra("cheated", 0);
         totalQuestionCount = intent.getIntExtra("totalQuestionCount", 0);
     }
 }

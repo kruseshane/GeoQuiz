@@ -21,6 +21,7 @@ public class QuizActivity extends AppCompatActivity {
     private Button mTrueButton;
     private Button mFalseButton;
     private Button mCheatButton;
+    private Button mShowStatsButton;
     private ImageButton mNextButton;
     private ImageButton mPrevButton;
     private TextView questionTV;
@@ -92,8 +93,7 @@ public class QuizActivity extends AppCompatActivity {
                 }
 
                 if (currentIndex == (questionBank.length)) {
-                    Intent intent = sendInfoToEndGameScreen(playerName, correctCount, incorrectCount,
-                            cheatCount, notAnsweredCount, questionBank.length);
+                    Intent intent = sendInfoToEndGameScreen(playerName, correctCount, incorrectCount, questionBank.length);
                     startActivity(intent);
                 }
             }
@@ -132,8 +132,7 @@ public class QuizActivity extends AppCompatActivity {
                 }
 
                 if (currentIndex == (questionBank.length)) {
-                    Intent intent = sendInfoToEndGameScreen(playerName, correctCount, incorrectCount,
-                            cheatCount, notAnsweredCount, questionBank.length);
+                    Intent intent = sendInfoToEndGameScreen(playerName, correctCount, incorrectCount, questionBank.length);
                     startActivity(intent);
                 }
             }
@@ -144,8 +143,7 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (currentIndex == (questionBank.length - 1)) {
-                    Intent intent = sendInfoToEndGameScreen(playerName, correctCount, incorrectCount,
-                            cheatCount, notAnsweredCount, questionBank.length);
+                    Intent intent = sendInfoToEndGameScreen(playerName, correctCount, incorrectCount, questionBank.length);
                     startActivity(intent);
                 } else {
                     notAnsweredCount ++;
@@ -184,6 +182,15 @@ public class QuizActivity extends AppCompatActivity {
                 startActivityForResult(intent, 123);
             }
         });
+
+        mShowStatsButton = findViewById(R.id.show_stats_button);
+        mShowStatsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = sendInfoToStatsScreen(correctCount, incorrectCount, cheatCount, notAnsweredCount);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -195,14 +202,21 @@ public class QuizActivity extends AppCompatActivity {
         }
     }
 
-    private Intent sendInfoToEndGameScreen(String name, int correct, int incorrect, int cheated, int skipped, int quizLength) {
+    private Intent sendInfoToEndGameScreen(String name, int correct, int incorrect, int quizLength) {
         Intent intent = new Intent(QuizActivity.this, EndGameActivity.class);
         intent.putExtra("name", name);
         intent.putExtra("correct", correct);
         intent.putExtra("incorrect", incorrect);
+        intent.putExtra("totalQuestionCount", quizLength);
+        return intent;
+    }
+
+    private Intent sendInfoToStatsScreen(int correct, int incorrect, int cheated, int skipped) {
+        Intent intent = new Intent(QuizActivity.this, StatsActivity.class);
+        intent.putExtra("correct", correct);
+        intent.putExtra("incorrect", incorrect);
         intent.putExtra("notAnswered", skipped);
         intent.putExtra("cheated", cheated);
-        intent.putExtra("totalQuestionCount", quizLength);
         return intent;
     }
 }

@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/globe_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".StatsActivity"></activity>
         <activity android:name=".WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,8 +21,7 @@
         </activity>
         <activity android:name=".EndGameActivity" />
         <activity android:name=".CheatActivity" />
-        <activity android:name=".QuizActivity">
-        </activity>
+        <activity android:name=".QuizActivity"></activity>
     </application>
 
 </manifest>
