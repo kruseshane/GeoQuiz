@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@android:color/white"
     android:gravity="center"
     tools:context=".EndGameActivity">
 
@@ -17,7 +18,22 @@
         android:textStyle="bold"
         android:paddingLeft="40dp"
         android:paddingRight="40dp"
-        android:paddingBottom="75dp"/>
+        android:paddingBottom="20dp"/>
+
+    <ImageView
+        android:id="@+id/medal_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:padding="24dp"/>
+
+    <TextView
+        android:id="@+id/medal_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:paddingBottom="75dp"
+        android:textSize="20sp"/>
 
     <TextView
         android:id="@+id/end_game_stats"
@@ -25,4 +41,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:textSize="25sp" />
+    
+
+
 </LinearLayout>

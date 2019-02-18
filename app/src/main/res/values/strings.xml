@@ -29,5 +29,12 @@
     <string name="prev_arrow_desc">View previous question</string>
     <string name="next_arrow_desc">View next question</string>
     <string name="name_hint">Enter Name</string>
+    <string name="welcome_message">Welcome to GeoQuiz! Enter you name below</string>
+
+    <string name="gold_message">You earned a gold medal!</string>
+    <string name="silver_message">You earned a silver medal!</string>
+    <string name="bronze_message">You earned a bronze medal!</string>
+    <string name="no_medal_message">Score higher to earn a medal</string>
+
 
 </resources>

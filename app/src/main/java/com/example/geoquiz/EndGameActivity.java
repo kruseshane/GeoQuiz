@@ -3,6 +3,7 @@ package com.example.geoquiz;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -20,6 +21,8 @@ public class EndGameActivity extends AppCompatActivity {
     private int totalQuestionCount;
     private TextView endGameText;
     private TextView endGameStats;
+    private TextView medalMessage;
+    private ImageView medal;
     private DecimalFormat df;
 
     @Override
@@ -27,13 +30,10 @@ public class EndGameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_end_game);
 
-        Intent intent = getIntent();
-        playerName = intent.getStringExtra("name");
-        correct = intent.getIntExtra("correct", 0);
-        incorrect = intent.getIntExtra("incorrect", 0);
-        notAnswered = intent.getIntExtra("notAnswered", 0);
-        cheated = intent.getIntExtra("cheated", 0);
-        totalQuestionCount = intent.getIntExtra("totalQuestionCount", 0);
+        medalMessage = findViewById(R.id.medal_message);
+        medal = findViewById(R.id.medal_view);
+
+        getPlayerInfo();
 
         df = new DecimalFormat("#.#");
         double score = correct / Double.valueOf(totalQuestionCount) * 100;
@@ -41,6 +41,20 @@ public class EndGameActivity extends AppCompatActivity {
         endGameText = findViewById(R.id.end_game_text);
         endGameText.setText("Thank you for playing GeoQuiz, " + playerName + "! You got a score of " +
                 String.valueOf(df.format(score)) + "%");
+
+        if (score >= 90) {
+            medalMessage.setText(getString(R.string.gold_message));
+            medal.setImageResource(R.mipmap.gold_medal);
+        } else if (score < 90 && score >= 70) {
+            medalMessage.setText(getString(R.string.silver_message));
+            medal.setImageResource(R.mipmap.silver_medal);
+        } else if (score < 70 && score >= 50) {
+            medalMessage.setText(getString(R.string.bronze_message));
+            medal.setImageResource(R.mipmap.bronze_medal);
+        } else {
+            medalMessage.setText(getString(R.string.no_medal_message));
+            medal.setImageResource(R.mipmap.no_medal);
+        }
 
         endGameStats = findViewById(R.id.end_game_stats);
         endGameStats.setText("Correct = " + String.valueOf(correct) + "\nIncorrect = " +
@@ -50,5 +64,15 @@ public class EndGameActivity extends AppCompatActivity {
 
 
 
+    }
+
+    private void getPlayerInfo() {
+        Intent intent = getIntent();
+        playerName = intent.getStringExtra("name");
+        correct = intent.getIntExtra("correct", 0);
+        incorrect = intent.getIntExtra("incorrect", 0);
+        notAnswered = intent.getIntExtra("notAnswered", 0);
+        cheated = intent.getIntExtra("cheated", 0);
+        totalQuestionCount = intent.getIntExtra("totalQuestionCount", 0);
     }
 }
